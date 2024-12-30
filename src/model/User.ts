@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Mongoose } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface Message extends Document {
   Content: string;
@@ -17,7 +17,7 @@ export const messageSchema: Schema = new mongoose.Schema({
   },
 });
 
-export interface User extends Document{
+export interface User extends Document {
   username: string;
   email: string;
   password: string;
@@ -28,7 +28,7 @@ export interface User extends Document{
   messages: Message[];
 }
 
-export const userSchema:Schema<User> = new mongoose.Schema({
+export const userSchema: Schema<User> = new mongoose.Schema({
   username: {
     type: String,
     required: [true, "Username is required"],
@@ -39,7 +39,10 @@ export const userSchema:Schema<User> = new mongoose.Schema({
     type: String,
     required: [true, "Email is required"],
     unique: true,
-    match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Please enter a valid email"],
+    match: [
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Please enter a valid email",
+    ],
   },
   password: {
     type: String,
@@ -64,6 +67,8 @@ export const userSchema:Schema<User> = new mongoose.Schema({
   messages: [messageSchema],
 });
 
-const UserModel = (mongoose.models.Users as mongoose.Model<User>) || mongoose.model<User>("Users", userSchema); 
+const UserModel =
+  (mongoose.models.Users as mongoose.Model<User>) ||
+  mongoose.model<User>("Users", userSchema);
 
-export default UserModel; 
+export default UserModel;

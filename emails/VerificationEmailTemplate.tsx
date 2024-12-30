@@ -9,8 +9,6 @@ import {
   Text,
 } from "@react-email/components";
 
-import React from "react";
-
 interface VerificationProps {
   username: string;
   otp: string;
