@@ -59,11 +59,19 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        session._id = token._id?.toString();
-        session.username = token.username;
-        session.isVerified = token.isVerified;
-        session.isAcceptingMessage = token.isAcceptingMessage;
+        session.user._id = token._id;
+        session.user.username = token.username;
+        session.user.isVerified = token.isVerified;
+        session.user.isAcceptingMessage = token.isAcceptingMessage;
       }
+      return session;
     },
   },
+  session: {
+    strategy: "jwt",
+  },
+  pages: {
+    signIn: "/sign-in",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
