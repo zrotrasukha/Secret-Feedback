@@ -39,6 +39,8 @@ export async function GET(request: Request) {
     });
 
     if (existingVerifiedUser) {
+      console.log("Username is already taken");
+
       return Response.json(
         {
           success: false,
@@ -49,17 +51,20 @@ export async function GET(request: Request) {
         },
       );
     }
+    console.log("Username is available");
 
     return Response.json(
       {
         success: true,
-        message: "Username is available",
+        message: "Username is unique",
       },
       {
         status: 200,
       },
     );
   } catch (error) {
+    console.error("Error checking username:", error);
+
     return Response.json(
       {
         success: false,
