@@ -11,7 +11,7 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {
         username: { label: "Username", type: "text", placeholder: "username" },
-        password: { label: "Username", type: "text", placeholder: "password" },
+        password: { label: "password", type: "text", placeholder: "password" },
       },
       async authorize(credentials: any): Promise<any> {
         dbConnect();
@@ -70,8 +70,8 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/sign-in",
   },
-  secret: process.env.NEXTAUTH_SECRET,
 };

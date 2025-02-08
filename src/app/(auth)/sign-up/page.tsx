@@ -125,11 +125,10 @@ export default function SignUpForm() {
                   {isCheckingUsername && <Loader2 className="animate-spin" />}
                   {!isCheckingUsername && usernameMessage && (
                     <p
-                      className={`text-sm ${
-                        usernameMessage === "Username is unique"
+                      className={`text-sm ${usernameMessage === "Username is unique"
                           ? "text-green-500"
                           : "text-red-500"
-                      }`}
+                        }`}
                     >
                       {usernameMessage}
                     </p>
@@ -177,12 +176,12 @@ export default function SignUpForm() {
           </form>
         </Form>
         <div className="text-center mt-4">
-          <p>
+          <div>
             Already a member?
             <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
               Sign in
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </div>
